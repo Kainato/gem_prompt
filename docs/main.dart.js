@@ -73786,7 +73786,7 @@ S(a){var s=null
 return new A.vU(new A.wC(s),"Gerador de Prompts",A.qK(s,s,B.Gn,s),s)}}
 A.wC.prototype={
 ag(){var s=null,r=$.ad(),q=A.aB6("https","generativelanguage.googleapis.com","v1beta",s)
-return new A.NI(new A.bw(s,t.am),new A.hF(B.c0,r),new A.hF(B.c0,r),new A.hF(B.c0,r),new A.hF(B.c0,r),new A.hF(B.c0,r),new A.hF(B.c0,r),new A.hF(B.c0,r),new A.Xw(new A.Xx(A.aw_("gemini-1.5-flash"),B.El,s,s,new A.Yv("",s),q,s,s)))}}
+return new A.NI(new A.bw(s,t.am),new A.hF(B.c0,r),new A.hF(B.c0,r),new A.hF(B.c0,r),new A.hF(B.c0,r),new A.hF(B.c0,r),new A.hF(B.c0,r),new A.hF(B.c0,r),new A.Xw(new A.Xx(A.aw_("gemini-1.5-flash"),B.El,s,s,new A.Yv("AIzaSyB2cutXuj9zGQz8KewDBQW-xARDEISyBRM",s),q,s,s)))}}
 A.NI.prototype={
 rY(){var s=0,r=A.S(t.H),q=this,p,o,n,m,l,k,j,i
 var $async$rY=A.O(function(a,b){if(a===1)return A.P(b,r)
