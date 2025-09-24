@@ -35,5 +35,5 @@ A ideia é simplificar a criação de prompts poderosos: você preenche alguns c
 Clone este repositório:
 
 ```bash
-git clone https://github.com/seu-usuario/promptwizard.git
+git clone https://github.com/seu-usuario/gemprompt.git
 cd gemprompt
