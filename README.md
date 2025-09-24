@@ -1,4 +1,4 @@
-# 📱 GemPrompt (ou outro nome que você escolher)
+# 📱 GemPrompt
 
 Aplicativo Flutter para gerar **prompts completos e estruturados**, com integração direta à **API Gemini** da Google AI.
 A ideia é simplificar a criação de prompts poderosos: você preenche alguns campos e o app monta o texto final no formato ideal, já enviando para a IA.
