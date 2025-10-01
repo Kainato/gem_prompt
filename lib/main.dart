@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_markdown/flutter_markdown.dart';
 
 import 'gemini_service.dart';
 
@@ -193,10 +194,12 @@ class _PromptFormState extends State<PromptForm> {
                 SizedBox(height: 20),
                 if (carregando) CircularProgressIndicator(),
                 if (respostaIA != null)
-                  SelectableText(
-                    respostaIA!,
-                    style: TextStyle(fontSize: 16),
-                    textAlign: TextAlign.center,
+                  Card(
+                    child: Markdown(
+                      data: respostaIA!,
+                      selectable: true,
+                      shrinkWrap: true,
+                    ),
                   ),
               ],
             ),
