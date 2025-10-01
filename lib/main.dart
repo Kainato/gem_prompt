@@ -1,4 +1,7 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'gemini_service.dart';
 
@@ -15,6 +18,8 @@ class PromptApp extends StatelessWidget {
     return MaterialApp(
       title: 'Gerador de Prompts',
       theme: ThemeData(primarySwatch: Colors.indigo),
+      darkTheme: ThemeData.dark(),
+      themeMode: ThemeMode.system,
       home: PromptForm(),
     );
   }
@@ -36,14 +41,17 @@ class _PromptFormState extends State<PromptForm> {
   final _formatoController = TextEditingController();
   final _tomController = TextEditingController();
   final _exemploController = TextEditingController();
+  ValueNotifier<bool> errorPrompt = GeminiService.errorPrompt;
+  String prompt = "";
 
   String? respostaIA;
   bool carregando = false;
 
-  final gemini = GeminiService(apiKey);
+  final gemini = GeminiService();
 
   Future<void> gerarPromptEChamarIA() async {
-    final prompt =
+    log("Modelo selecionado: ${GeminiService.selectedModel.$2.value}");
+    prompt =
         """
     Atue como ${_papelController.text}.
     Contexto: ${_contextoController.text}
@@ -70,7 +78,52 @@ class _PromptFormState extends State<PromptForm> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Gerador de Prompts IA")),
+      appBar: AppBar(
+        title: Text("Gerador de Prompts IA"),
+        centerTitle: true,
+        actions: [
+          ValueListenableBuilder(
+            valueListenable: errorPrompt,
+            builder: (context, value, child) {
+              if (value) {
+                return IconButton(
+                  icon: Icon(Icons.copy),
+                  onPressed: () {
+                    if (respostaIA != null) {
+                      Clipboard.setData(ClipboardData(text: prompt));
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(
+                            "Resposta copiada para a área de transferência!",
+                          ),
+                        ),
+                      );
+                    }
+                  },
+                );
+              } else {
+                return SizedBox.shrink();
+              }
+            },
+          ),
+          IconButton(
+            icon: Icon(Icons.refresh),
+            onPressed: () {
+              setState(() {
+                respostaIA = null;
+                carregando = false;
+                _papelController.clear();
+                _contextoController.clear();
+                _objetivoController.clear();
+                _detalhesController.clear();
+                _formatoController.clear();
+                _tomController.clear();
+                _exemploController.clear();
+              });
+            },
+          ),
+        ],
+      ),
       body: Padding(
         padding: EdgeInsets.all(16),
         child: SingleChildScrollView(
@@ -78,6 +131,34 @@ class _PromptFormState extends State<PromptForm> {
             key: _formKey,
             child: Column(
               children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 8.0),
+                  child: FutureBuilder(
+                    future: GeminiService.listarModelos(apiKey),
+                    builder: (context, snapshot) {
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return LinearProgressIndicator();
+                      } else if (snapshot.hasError) {
+                        return Text("Erro ao carregar modelos");
+                      } else {
+                        return DropdownMenu(
+                          menuHeight: MediaQuery.of(context).size.height * 0.4,
+                          dropdownMenuEntries: GeminiService.dropdownModelos,
+                          expandedInsets: EdgeInsets.all(0),
+                          enableSearch: false,
+                          enableFilter: false,
+                          label: Text("Selecione o modelo de IA"),
+                          controller: GeminiService.selectedModel.$1,
+                          onSelected: (value) {
+                            if (value != null) {
+                              GeminiService.selectedModel.$2.value = value;
+                            }
+                          },
+                        );
+                      }
+                    },
+                  ),
+                ),
                 buildTextField("Papel/Especialista", _papelController),
                 buildTextField("Contexto", _contextoController),
                 buildTextField("Objetivo", _objetivoController),
@@ -97,7 +178,11 @@ class _PromptFormState extends State<PromptForm> {
                 SizedBox(height: 20),
                 if (carregando) CircularProgressIndicator(),
                 if (respostaIA != null)
-                  SelectableText(respostaIA!, style: TextStyle(fontSize: 16)),
+                  SelectableText(
+                    respostaIA!,
+                    style: TextStyle(fontSize: 16),
+                    textAlign: TextAlign.center,
+                  ),
               ],
             ),
           ),
