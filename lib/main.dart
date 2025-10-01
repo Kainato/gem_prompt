@@ -110,7 +110,7 @@ class _PromptFormState extends State<PromptForm> {
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
                           content: Text(
-                            "Resposta copiada para a área de transferência!",
+                            "Prompt copiado para a área de transferência!",
                           ),
                         ),
                       );

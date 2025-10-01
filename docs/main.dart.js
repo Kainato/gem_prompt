@@ -87872,7 +87872,7 @@ $S:592}
 A.aoC.prototype={
 $0(){var s=null,r=this.a
 if(r.at!=null){A.xt(new A.oi(r.as))
-this.b.ak(t.Pu).f.YQ(A.aBI(s,s,s,s,s,B.R,s,A.eT("Resposta copiada para a \xe1rea de transfer\xeancia!",s,s,s,s,s,s),s,B.DQ,s,s,s,s,s,s,s,s,s))}},
+this.b.ak(t.Pu).f.YQ(A.aBI(s,s,s,s,s,B.R,s,A.eT("Prompt copiado para a \xe1rea de transfer\xeancia!",s,s,s,s,s,s),s,B.DQ,s,s,s,s,s,s,s,s,s))}},
 $S:0}
 A.aoE.prototype={
 $0(){var s=this.a
