@@ -1,7 +1,7 @@
 name: prompt_app
 description: "A new Flutter project."
 publish_to: 'none'
-version: 0.1.0
+version: 0.2.0+1
 
 environment:
   sdk: ^3.8.1
@@ -10,6 +10,9 @@ dependencies:
   flutter:
     sdk: flutter
   google_generative_ai: ^0.4.3
+  dio: ^5.7.0
+  logger: ^2.5.0
+  flutter_markdown:
 
 dev_dependencies:
   flutter_test:
@@ -18,3 +21,9 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+
+scripts:
+  build_web: flutter build web --dart-define=API_KEY=
+  web_folder: mkdir docs
+  web_move_windows: xcopy /E /H /Y build\web\* docs\
+  web_move_mac: cp -R build/web/. docs/
