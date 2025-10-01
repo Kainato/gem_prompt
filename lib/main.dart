@@ -51,16 +51,31 @@ class _PromptFormState extends State<PromptForm> {
 
   Future<void> gerarPromptEChamarIA() async {
     log("Modelo selecionado: ${GeminiService.selectedModel.$2.value}");
-    prompt =
-        """
-    Atue como ${_papelController.text}.
-    Contexto: ${_contextoController.text}
-    Objetivo: ${_objetivoController.text}
-    Detalhes/Regras: ${_detalhesController.text}
-    Formato: ${_formatoController.text}
-    Tom/Estilo: ${_tomController.text}
-    Exemplo/Referência: ${_exemploController.text}
-    """;
+    List<String?> partes = [
+      _papelController.text.isNotEmpty
+          ? "Atue como: ${_papelController.text}"
+          : null,
+      _contextoController.text.isNotEmpty
+          ? "Contexto: ${_contextoController.text}"
+          : null,
+      _objetivoController.text.isNotEmpty
+          ? "Objetivo: ${_objetivoController.text}"
+          : null,
+      _detalhesController.text.isNotEmpty
+          ? "Detalhes/Regras: ${_detalhesController.text}"
+          : null,
+      _formatoController.text.isNotEmpty
+          ? "Formato: ${_formatoController.text}"
+          : null,
+      _tomController.text.isNotEmpty
+          ? "Tom/Estilo: ${_tomController.text}"
+          : null,
+      _exemploController.text.isNotEmpty
+          ? "Exemplo/Referência: ${_exemploController.text}"
+          : null,
+    ];
+
+    prompt = partes.whereType<String>().join('\n');
 
     setState(() {
       carregando = true;
