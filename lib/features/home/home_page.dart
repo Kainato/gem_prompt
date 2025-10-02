@@ -1,10 +1,10 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:prompt_app/main.dart';
 
+import '../../functions/wd_helpers.dart';
 import '../../services/gemini_service.dart';
 import '../../widgets/layout/wd_scaffold.dart';
 
@@ -85,13 +85,10 @@ class PromptFormState extends State<PromptForm> {
                 icon: Icon(Icons.copy),
                 onPressed: () {
                   if (respostaIA != null) {
-                    Clipboard.setData(ClipboardData(text: prompt));
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text(
-                          "Prompt copiado para a área de transferência!",
-                        ),
-                      ),
+                    WdHelpers.copyClipboard(
+                      context,
+                      text: prompt,
+                      message: "Prompt copiado para a área de transferência!",
                     );
                   }
                 },
