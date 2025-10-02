@@ -6,7 +6,7 @@ import 'package:prompt_app/api/http_request.dart';
 import 'package:prompt_app/class/ia_model.dart';
 import 'package:prompt_app/main.dart';
 
-import 'api/api_request.dart';
+import '../api/api_request.dart';
 
 class GeminiService {
   GeminiService();
