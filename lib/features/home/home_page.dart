@@ -2,7 +2,6 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
-import 'package:prompt_app/main.dart';
 
 import '../../enum/pages_enum.dart';
 import '../../functions/wd_helpers.dart';
@@ -10,14 +9,14 @@ import '../../services/gemini_service.dart';
 import '../../widgets/form/wd_text_form_field.dart';
 import '../../widgets/layout/wd_scaffold.dart';
 
-class PromptForm extends StatefulWidget {
-  const PromptForm({super.key});
+class HomePage extends StatefulWidget {
+  const HomePage({super.key});
 
   @override
-  PromptFormState createState() => PromptFormState();
+  HomePageState createState() => HomePageState();
 }
 
-class PromptFormState extends State<PromptForm> {
+class HomePageState extends State<HomePage> {
   final _formKey = GlobalKey<FormState>();
   final _papelController = TextEditingController();
   final _contextoController = TextEditingController();
@@ -124,31 +123,6 @@ class PromptFormState extends State<PromptForm> {
           child: Column(
             spacing: 16.0,
             children: [
-              FutureBuilder(
-                future: GeminiService.listarModelos(apiKey),
-                builder: (context, snapshot) {
-                  if (snapshot.connectionState == ConnectionState.waiting) {
-                    return LinearProgressIndicator();
-                  } else if (snapshot.hasError) {
-                    return Text("Erro ao carregar modelos");
-                  } else {
-                    return DropdownMenu(
-                      menuHeight: MediaQuery.of(context).size.height * 0.4,
-                      dropdownMenuEntries: GeminiService.dropdownModelos,
-                      expandedInsets: EdgeInsets.all(0),
-                      enableSearch: false,
-                      enableFilter: false,
-                      label: Text("Selecione o modelo de IA"),
-                      controller: GeminiService.selectedModel.$1,
-                      onSelected: (value) {
-                        if (value != null) {
-                          GeminiService.selectedModel.$2.value = value;
-                        }
-                      },
-                    );
-                  }
-                },
-              ),
               WdTextFormField(
                 label: "Papel/Especialista",
                 controller: _papelController,

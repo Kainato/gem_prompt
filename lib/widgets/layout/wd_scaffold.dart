@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:prompt_app/widgets/layout/wd_drawer.dart';
 
 class WdScaffold extends StatelessWidget {
   final String title;
@@ -17,6 +18,7 @@ class WdScaffold extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        drawer: WdDrawer(),
         appBar: AppBar(title: Text(title), actions: actions),
         body: Padding(
           padding: padding ?? const EdgeInsets.all(16.0),
