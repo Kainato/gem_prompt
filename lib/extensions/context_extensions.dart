@@ -10,4 +10,7 @@ extension ContextExtensions on BuildContext {
   Color get onPrimaryColor {
     return Theme.of(this).colorScheme.onPrimary;
   }
+  Color get dividerColor {
+    return Theme.of(this).dividerColor;
+  }
 }
