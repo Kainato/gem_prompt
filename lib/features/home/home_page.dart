@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 
@@ -34,7 +32,6 @@ class HomePageState extends State<HomePage> {
   final gemini = GeminiService();
 
   Future<void> gerarPromptEChamarIA() async {
-    log("Modelo selecionado: ${GeminiService.selectedModel.$2.value}");
     List<String?> partes = [
       _papelController.text.isNotEmpty
           ? "Atue como: ${_papelController.text}"
