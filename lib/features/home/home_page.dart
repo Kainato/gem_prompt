@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:prompt_app/main.dart';
 
+import '../../enum/pages_enum.dart';
 import '../../functions/wd_helpers.dart';
 import '../../services/gemini_service.dart';
 import '../../widgets/form/wd_text_form_field.dart';
@@ -77,6 +78,7 @@ class PromptFormState extends State<PromptForm> {
   @override
   Widget build(BuildContext context) {
     return WdScaffold(
+      title: PagesEnum.home.title,
       actions: [
         ValueListenableBuilder(
           valueListenable: errorPrompt,
