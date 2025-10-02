@@ -1,7 +1,7 @@
 name: prompt_app
 description: "A new Flutter project."
 publish_to: 'none'
-version: 0.2.0+1
+version: 0.2.1+002dev
 
 environment:
   sdk: ^3.8.1
@@ -13,6 +13,8 @@ dependencies:
   dio: ^5.7.0
   logger: ^2.5.0
   flutter_markdown:
+  package_info_plus: ^8.3.0
+  auto_size_text:
 
 dev_dependencies:
   flutter_test:

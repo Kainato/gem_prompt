@@ -3,10 +3,10 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:google_generative_ai/google_generative_ai.dart';
 import 'package:prompt_app/api/http_request.dart';
-import 'package:prompt_app/class/ia_model.dart';
+import 'package:prompt_app/classes/ia_model.dart';
 import 'package:prompt_app/main.dart';
 
-import 'api/api_request.dart';
+import '../api/api_request.dart';
 
 class GeminiService {
   GeminiService();
