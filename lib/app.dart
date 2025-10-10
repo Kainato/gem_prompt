@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:prompt_app/enum/pages_enum.dart';
 
 import 'features/home/home_page.dart';
-import 'features/settings/settings_page.dart';
 
 class PromptApp extends StatelessWidget {
   const PromptApp({super.key});
@@ -11,13 +10,13 @@ class PromptApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Gerador de Prompts',
-      initialRoute: PagesEnum.home.route,
+      initialRoute: PagesEnum.home.routesPages.$1,
       theme: ThemeData(primaryColor: Colors.purple, useMaterial3: true),
       darkTheme: ThemeData.dark(useMaterial3: true),
       themeMode: ThemeMode.system,
       routes: {
-        PagesEnum.home.route: (context) => const HomePage(),
-        PagesEnum.settings.route: (context) => const SettingsPage(),
+        for (PagesEnum page in PagesEnum.values)
+          page.routesPages.$1: (context) => page.routesPages.$2,
       },
       home: const HomePage(),
     );

@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 class WdTextFormField extends StatelessWidget {
   final String label;
   final TextEditingController? controller;
-  const WdTextFormField({super.key, required this.label, this.controller});
+  final String? hintText;
+  const WdTextFormField({super.key, required this.label, this.controller, this.hintText});
 
   @override
   Widget build(BuildContext context) {
@@ -13,6 +14,7 @@ class WdTextFormField extends StatelessWidget {
       decoration: InputDecoration(
         labelText: label,
         border: OutlineInputBorder(),
+        hintText: hintText,
       ),
     );
   }

@@ -39,10 +39,16 @@ class WdDrawer extends Drawer {
                   style: ListTileStyle.drawer,
                   leading: Icon(page.icon),
                   title: Text(page.title),
-                  selected: ModalRoute.of(context)?.settings.name == page.route,
+                  selected:
+                      ModalRoute.of(context)?.settings.name ==
+                      page.routesPages.$1,
                   onTap: () {
-                    if (ModalRoute.of(context)?.settings.name != page.route) {
-                      Navigator.pushReplacementNamed(context, page.route);
+                    if (ModalRoute.of(context)?.settings.name !=
+                        page.routesPages.$1) {
+                      Navigator.pushReplacementNamed(
+                        context,
+                        page.routesPages.$1,
+                      );
                     } else {
                       Navigator.pop(context);
                     }
