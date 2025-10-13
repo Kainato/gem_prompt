@@ -19,7 +19,10 @@ class WdScaffold extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         drawer: WdDrawer(),
-        appBar: AppBar(title: Text(title), actions: actions),
+        appBar: AppBar(
+          title: Text(title, style: TextStyle(fontWeight: FontWeight.bold)),
+          actions: actions,
+        ),
         body: Padding(
           padding: padding ?? const EdgeInsets.all(16.0),
           child: body,

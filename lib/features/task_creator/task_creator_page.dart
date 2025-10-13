@@ -37,8 +37,8 @@ class TaskCreatorPageState extends State<TaskCreatorPage> {
             spacing: 16.0,
             children: [
               WdTextFormField(
-                label: "Task",
-                hintText: "Descreva a atividade que você deseja reformular",
+                label: "Atividade",
+                hintText: "Descreva como é a sua atividade que você deseja reformular",
                 controller: controller.inputController,
               ),
               ElevatedButton(
