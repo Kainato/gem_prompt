@@ -13,6 +13,12 @@ class HomePage extends StatefulWidget {
 class HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+    double cardWidth = 400;
+    int crossAxisCount = screenWidth ~/ cardWidth > 0
+        ? screenWidth ~/ cardWidth
+        : 1;
+    double cardHeight = MediaQuery.of(context).size.height / 4;
     return WdScaffold(
       title: PagesEnum.home.title,
       body: Column(
@@ -26,8 +32,8 @@ class HomePageState extends State<HomePage> {
             shrinkWrap: true,
             itemCount: PagesEnum.values.length,
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-              mainAxisExtent: 200,
+              crossAxisCount: crossAxisCount,
+              mainAxisExtent: cardHeight,
             ),
             itemBuilder: (context, index) {
               String title = PagesEnum.values[index].title;
