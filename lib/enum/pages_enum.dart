@@ -46,4 +46,17 @@ extension PagesEnumExtension on PagesEnum {
         return ('/settings', const SettingsPage());
     }
   }
+
+  bool get homeVisible {
+    switch (this) {
+      case PagesEnum.home:
+        return false;
+      case PagesEnum.padrao:
+        return true;
+      case PagesEnum.task:
+        return true;
+      case PagesEnum.settings:
+        return true;
+    }
+  }
 }

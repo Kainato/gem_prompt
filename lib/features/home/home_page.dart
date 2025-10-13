@@ -19,6 +19,9 @@ class HomePageState extends State<HomePage> {
         ? screenWidth ~/ cardWidth
         : 1;
     double cardHeight = MediaQuery.of(context).size.height / 4;
+    List<PagesEnum> visiblePages = PagesEnum.values
+        .where((page) => page.homeVisible)
+        .toList();
     return WdScaffold(
       title: PagesEnum.home.title,
       body: Column(
@@ -30,19 +33,19 @@ class HomePageState extends State<HomePage> {
           ),
           GridView.builder(
             shrinkWrap: true,
-            itemCount: PagesEnum.values.length,
+            itemCount: visiblePages.length,
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: crossAxisCount,
               mainAxisExtent: cardHeight,
             ),
             itemBuilder: (context, index) {
-              String title = PagesEnum.values[index].title;
-              IconData icon = PagesEnum.values[index].icon;
+              String title = visiblePages[index].title;
+              IconData icon = visiblePages[index].icon;
+              String route = visiblePages[index].routesPages.$1;
               return Card(
                 child: InkWell(
                   borderRadius: BorderRadius.circular(12.0),
                   onTap: () {
-                    String route = PagesEnum.values[index].routesPages.$1;
                     Navigator.pushNamed(context, route);
                   },
                   child: GridTile(
