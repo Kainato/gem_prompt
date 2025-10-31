@@ -156,10 +156,31 @@ class PromptPadraoPageState extends State<PromptPadraoPage> {
               if (carregando) CircularProgressIndicator(),
               if (respostaIA != null)
                 Card(
-                  child: Markdown(
-                    data: respostaIA!,
-                    selectable: true,
-                    shrinkWrap: true,
+                  child: Column(
+                    children: [
+                      ListTile(
+                        title: Text(
+                          "Resposta da IA",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 24,
+                          ),
+                        ),
+                        trailing: IconButton(
+                          icon: Icon(Icons.copy),
+                          onPressed: () => WdHelpers.copyClipboard(
+                            context,
+                            text: respostaIA!,
+                            message: "Resposta da IA copiada com sucesso!",
+                          ),
+                        ),
+                      ),
+                      Markdown(
+                        data: respostaIA!,
+                        selectable: true,
+                        shrinkWrap: true,
+                      ),
+                    ],
                   ),
                 ),
             ],

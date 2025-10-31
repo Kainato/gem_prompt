@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../functions/wd_helpers.dart';
 import '../../services/gemini_service.dart';
 
 class TaskCreatorController extends ChangeNotifier {
@@ -43,15 +42,5 @@ class TaskCreatorController extends ChangeNotifier {
     inputController.clear();
     resetPrompt();
     notifyListeners();
-  }
-
-  void copyToClipboard(BuildContext context, {bool copiarResposta = false}) {
-    final String text = copiarResposta ? respostaIA.value : baseInput;
-    final String label = copiarResposta ? 'Resposta' : 'Prompt';
-    WdHelpers.copyClipboard(
-      context,
-      text: text,
-      message: "$label copiado para a área de transferência!",
-    );
   }
 }

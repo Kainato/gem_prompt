@@ -1,4 +1,4 @@
-package com.example.prompt_app
+package com.kainato.prompt_app
 
 import io.flutter.embedding.android.FlutterActivity
 
