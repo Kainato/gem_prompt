@@ -13,8 +13,10 @@ dependencies:
   dio: ^5.7.0
   logger: ^2.5.0
   flutter_markdown:
-  package_info_plus: ^8.3.0
+  package_info_plus: ^9.0.0
   auto_size_text:
+  supabase_flutter: ^2.10.3
+  google_fonts: ^6.3.2
 
 dev_dependencies:
   flutter_test:
