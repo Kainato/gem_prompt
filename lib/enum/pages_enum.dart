@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 
+import '../features/auth/login/login_page.dart';
 import '../features/home/home_page.dart';
 import '../features/padrao/prompt_padrao_page.dart';
 import '../features/settings/settings_page.dart';
 import '../features/task_creator/task_creator_page.dart';
 
-enum PagesEnum { home, padrao, task, settings }
+enum PagesEnum { home, padrao, task, login, settings }
 
 extension PagesEnumExtension on PagesEnum {
   String get title {
@@ -18,6 +19,8 @@ extension PagesEnumExtension on PagesEnum {
         return 'Reformulador de "Tasks"';
       case PagesEnum.settings:
         return 'Configurações';
+      case PagesEnum.login:
+        return 'Login';
     }
   }
 
@@ -31,6 +34,8 @@ extension PagesEnumExtension on PagesEnum {
         return Icons.task;
       case PagesEnum.settings:
         return Icons.settings;
+      case PagesEnum.login:
+        return Icons.login;
     }
   }
 
@@ -44,6 +49,8 @@ extension PagesEnumExtension on PagesEnum {
         return ('/task', const TaskCreatorPage());
       case PagesEnum.settings:
         return ('/settings', const SettingsPage());
+      case PagesEnum.login:
+        return ('/login', const LoginPage());
     }
   }
 
@@ -57,6 +64,8 @@ extension PagesEnumExtension on PagesEnum {
         return true;
       case PagesEnum.settings:
         return true;
+      case PagesEnum.login:
+        return false;
     }
   }
 }
