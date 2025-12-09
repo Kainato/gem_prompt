@@ -19,30 +19,34 @@ class LoginPage extends StatelessWidget {
             decoration: const InputDecoration(
               labelText: 'Email',
               border: OutlineInputBorder(),
+              prefixIcon: Icon(Icons.email_rounded),
             ),
           ),
           const SizedBox(height: 16.0),
           ValueListenableBuilder(
             valueListenable: loginState.obscureText,
             builder: (context, obscureText, child) => TextFormField(
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                 labelText: 'Senha',
-                border: OutlineInputBorder(),
+                border: const OutlineInputBorder(),
+                prefixIcon: Icon(Icons.password_rounded),
+                suffixIcon: IconButton(
+                  onPressed: () => loginState.toggleObscureText(),
+                  icon: Icon(
+                    !obscureText ? Icons.visibility : Icons.visibility_off,
+                  ),
+                ),
               ),
               obscureText: obscureText,
             ),
           ),
           const SizedBox(height: 24.0),
           ElevatedButton(
-            onPressed: () {
-              // Lógica de login aqui
-            },
+            onPressed: () => loginState.login(),
             child: const Text('Login'),
           ),
           TextButton(
-            onPressed: () {
-              // Lógica de registro aqui
-            },
+            onPressed: () => loginState.register(context),
             child: const Text('Registrar-se'),
           ),
         ],

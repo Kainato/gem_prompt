@@ -1,12 +1,12 @@
 #!/bin/sh
 # This is a generated file; do not edit or check into version control.
 export "FLUTTER_ROOT=/opt/homebrew/Caskroom/flutter/3.32.2/flutter"
-export "FLUTTER_APPLICATION_PATH=/Users/teatec/Documents/GitHub/prompt_app"
+export "FLUTTER_APPLICATION_PATH=/Users/teatec/Documents/GitHub/gem_prompt"
 export "COCOAPODS_PARALLEL_CODE_SIGN=true"
 export "FLUTTER_TARGET=lib/main.dart"
 export "FLUTTER_BUILD_DIR=build"
-export "FLUTTER_BUILD_NAME=0.3.0"
-export "FLUTTER_BUILD_NUMBER=003"
+export "FLUTTER_BUILD_NAME=0.3.1"
+export "FLUTTER_BUILD_NUMBER=004"
 export "DART_OBFUSCATION=false"
 export "TRACK_WIDGET_CREATION=true"
 export "TREE_SHAKE_ICONS=false"
