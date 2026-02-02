@@ -1,7 +1,7 @@
 name: prompt_app
 description: "A new Flutter project."
 publish_to: 'none'
-version: 0.3.1+004dev
+version: 0.3.0+003dev
 
 environment:
   sdk: ^3.8.1

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
-import 'package:prompt_app/functions/wd_helpers.dart';
 
 import '../../enum/pages_enum.dart';
 import '../../widgets/form/wd_text_form_field.dart';
@@ -23,6 +22,10 @@ class TaskCreatorPageState extends State<TaskCreatorPage> {
       title: PagesEnum.task.title,
       actions: [
         IconButton(
+          icon: Icon(Icons.copy),
+          onPressed: () => controller.copyToClipboard(context),
+        ),
+        IconButton(
           icon: Icon(Icons.refresh),
           onPressed: () => controller.limparInput(),
         ),
@@ -35,8 +38,7 @@ class TaskCreatorPageState extends State<TaskCreatorPage> {
             children: [
               WdTextFormField(
                 label: "Atividade",
-                hintText:
-                    "Descreva como é a sua atividade que você deseja reformular",
+                hintText: "Descreva como é a sua atividade que você deseja reformular",
                 controller: controller.inputController,
               ),
               ElevatedButton(
@@ -55,41 +57,31 @@ class TaskCreatorPageState extends State<TaskCreatorPage> {
                   } else {
                     return ValueListenableBuilder(
                       valueListenable: controller.respostaIA,
-                      builder: (BuildContext context, String value, Widget? child) {
-                        if (value.isEmpty) {
-                          return SizedBox.shrink();
-                        } else {
-                          return Card(
-                            child: Column(
-                              children: [
-                                ListTile(
-                                  title: Text(
-                                    "Resposta da IA",
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 24,
+                      builder:
+                          (BuildContext context, String value, Widget? child) {
+                            if (value.isEmpty) {
+                              return SizedBox.shrink();
+                            } else {
+                              return Card(
+                                child: Column(
+                                  children: [
+                                    ListTile(
+                                      title: Text("Resposta da IA", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24)),
+                                      trailing: IconButton(
+                                        icon: Icon(Icons.copy),
+                                        onPressed: () => controller.copyToClipboard(context, copiarResposta: true),
+                                      ),
                                     ),
-                                  ),
-                                  trailing: IconButton(
-                                    icon: Icon(Icons.copy),
-                                    onPressed: () => WdHelpers.copyClipboard(
-                                      context,
-                                      text: value,
-                                      message:
-                                          "Resposta da IA copiada com sucesso!",
+                                    Markdown(
+                                      data: value,
+                                      selectable: true,
+                                      shrinkWrap: true,
                                     ),
-                                  ),
+                                  ],
                                 ),
-                                Markdown(
-                                  data: value,
-                                  selectable: true,
-                                  shrinkWrap: true,
-                                ),
-                              ],
-                            ),
-                          );
-                        }
-                      },
+                              );
+                            }
+                          },
                     );
                   }
                 },
