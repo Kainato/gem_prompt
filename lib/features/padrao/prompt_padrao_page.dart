@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
+import 'package:prompt_app/features/padrao/prompt_padrao_controller.dart';
 
 import '../../enum/pages_enum.dart';
 import '../../functions/wd_helpers.dart';
@@ -15,61 +16,7 @@ class PromptPadraoPage extends StatefulWidget {
 }
 
 class PromptPadraoPageState extends State<PromptPadraoPage> {
-  final _formKey = GlobalKey<FormState>();
-  final _papelController = TextEditingController();
-  final _contextoController = TextEditingController();
-  final _objetivoController = TextEditingController();
-  final _detalhesController = TextEditingController();
-  final _formatoController = TextEditingController();
-  final _tomController = TextEditingController();
-  final _exemploController = TextEditingController();
-  ValueNotifier<bool> errorPrompt = GeminiService.errorPrompt;
-  String prompt = "";
-
-  String? respostaIA;
-  bool carregando = false;
-
-  final gemini = GeminiService();
-
-  Future<void> gerarPromptEChamarIA() async {
-    List<String?> partes = [
-      _papelController.text.isNotEmpty
-          ? "Atue como: ${_papelController.text}"
-          : null,
-      _contextoController.text.isNotEmpty
-          ? "Contexto: ${_contextoController.text}"
-          : null,
-      _objetivoController.text.isNotEmpty
-          ? "Objetivo: ${_objetivoController.text}"
-          : null,
-      _detalhesController.text.isNotEmpty
-          ? "Detalhes/Regras: ${_detalhesController.text}"
-          : null,
-      _formatoController.text.isNotEmpty
-          ? "Formato: ${_formatoController.text}"
-          : null,
-      _tomController.text.isNotEmpty
-          ? "Tom/Estilo: ${_tomController.text}"
-          : null,
-      _exemploController.text.isNotEmpty
-          ? "Exemplo/Referência: ${_exemploController.text}"
-          : null,
-    ];
-
-    prompt = partes.whereType<String>().join('\n');
-
-    setState(() {
-      carregando = true;
-      respostaIA = null;
-    });
-
-    final resposta = await gemini.gerarResposta(prompt);
-
-    setState(() {
-      respostaIA = resposta;
-      carregando = false;
-    });
-  }
+  final PromptPadraoController controller = PromptPadraoController();
 
   @override
   Widget build(BuildContext context) {
@@ -156,10 +103,12 @@ class PromptPadraoPageState extends State<PromptPadraoPage> {
               if (carregando) CircularProgressIndicator(),
               if (respostaIA != null)
                 Card(
-                  child: Markdown(
-                    data: respostaIA!,
-                    selectable: true,
-                    shrinkWrap: true,
+                  child: SelectionArea(
+                    child: Markdown(
+                      data: respostaIA!,
+                      selectable: true,
+                      shrinkWrap: true,
+                    ),
                   ),
                 ),
             ],
